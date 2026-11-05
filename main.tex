@@ -81,21 +81,38 @@
 \section*{Problem 1: the complexity class NP (30 points)}
 \begin{questions}
 	\question[15] Assume $A \in$ NP and $B \in$ P. Show that $A \setminus B \in$ NP
-	\begin{solutionbox}{\stretch{-1}} Let $M_A$ be a nondeterministic Turing machine that decides A in polynomial time, Let $M_B$ be a deterministic Turing machine that decides B in polynomial time, we construct a nondeterministic Turing machine M that decides $A \setminus B$ in polynomial time \newline \newline
-    Run M on input w: \newline
-    1. run $M_A$ on input w \newline
-    2. If $M_A$ rejects, reject,otherwise run $M_B$ on w \newline
-    3. IF $M_B$ accepts, reject, if $M_B$ rejects, accept
-    \newline\newline
-    Correctness: As $A \setminus B$ means the set of strings that are in A but not in B, the decider M runs $M_A$ to check if w is in A, if it is in A, we need to check if w is in B, as if it is in B, then it cannot be in $A \setminus B$, thus we accept only if w is in A but not in B, for time, since we know A is in NP, we know that $M_A$ runs in polynomial time for a nondeterministic Turing machine, so running $M_A$ takes polynomial time for M as M is nondeterministic, similarly $M_B$ takes polynomial time for a deterministic Turing machine, so it takes polynomial time for a nondeterministic Turing machine, thus M runs in polynomial time and as it decides $A \setminus B$, $A \setminus B \in $ NP  
+	\begin{solutionbox}{\stretch{-1}} 
+	Let $M_A$ be a nondeterministic Turing machine that decides A in polynomial time,
+	Let $M_B$ be a deterministic Turing machine that decides B in polynomial time,
+	we construct a nondeterministic Turing machine M that decides $A \setminus B$ in polynomial time:
+	
+	
+	Let $M="$On input $\langle w\rangle$:
+	\begin{enumerate}
+		\item Run $M_A$ on input $\langle w\rangle$
+		\item If $M_A$ rejects, reject,otherwise run $M_B$ on w 
+		\item If $M_B$ accepts, reject, if $M_B$ rejects, accept"
+	\end{enumerate}
+
+    \vspace{2em}
+
+    \textbf{\large Correctness:} \\
+	 As $A \setminus B$ means the set of strings that are in A but not in B,
+	 the decider M runs $M_A$ to check if w is in A, if it is in A,
+	 we need to check if w is in B, as if it is in B, then it cannot be in$A \setminus B$,
+	 thus we accept only if w is in A but not in B, for time, since we know A is in NP,
+	 we know that $M_A$ runs in polynomial time for a nondeterministic Turing machine, so running $M_A$ takes polynomial time for M as M is nondeterministic,
+	 similarly $M_B$ takes polynomial time for a deterministic Turing machine,
+	 so it takes polynomial time for a nondeterministic Turing machine, thus M runs in polynomial time and as it decides $A \setminus B$, $A \setminus B \in $ NP  
     
 	\end{solutionbox}
-
+	\pagebreak
 	\question[15] Assume that P $=$ NP. Give a polynomial-time algorithm for finding a satisfying assignment for a boolean formula $\phi$, if one exists.
 	\begin{solutionbox}{\stretch{-1}}  
-    
+	
 	\end{solutionbox}
 \end{questions}
+\pagebreak
 \section*{Problem 2: Polynomial time reductions and NP-completeness}
 \begin{questions}
     \question[20] Consider the language \[B=\{\langle G,k,v \rangle \mid G \text{ is a graph with a $k$-clique containing $v$}\}\] (a) Show that $B$ is in NP. \newline (b) Give a polynomial-time reduction from CLIQUE to $B$. \newline (c) is $B$ NP-complete?
