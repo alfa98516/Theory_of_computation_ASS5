@@ -155,7 +155,7 @@
 \end{parts}
     \begin{solutionbox}{\stretch{-1}} \\ 
 
-	    Recall that for a graph, we denote it with $G=(V,E)$,
+	    a) Recall that for a graph, we denote it with $G=(V,E)$,
 	    where V is the set of vertices, let $M_C$ be a nondeterministic Turing machine that decides CLIQUE that runs in polynomial time, 
 	    we construct a nondeterministic Turing machine $M$ that decides B. 
 
@@ -174,7 +174,38 @@
 	so, we start by checking if $v \in V$ and if so, we can just run the decider for CLIQUE, if it doesn't exist, 
 	then $G$ does not contain $v$ and we reject.
 	CLIQUE is in NP, so there exists a nondeterministic Turing machine that decides CLIQUE in polynomial time, 
-	and as we have one for loop that goes through $V$, its also polynomial, so this machine runs in polynomial time and as such $B \in$ NP
+	and as we have one for loop that goes through $V$, its also polynomial, so this machine runs in polynomial time and as such $B \in$ NP 
+    
+    \vspace{2em}
+    
+    b) To polynomially-time reduce CLIQUE to B, we must show that \[\langle G,K\rangle \in CLIQUE \iff f(G,k) \in B\], so let us construct a turing machine M' that reduces CLIQUE to B such, let us also recall the turing machine M from (a)
+    
+    \vspace{2em}
+    
+    Let M' = "On input $\langle G,k\rangle$:
+    \begin{enumerate}
+        \item Take any one $v\in V$
+        \item construct $f(x) = \langle G,K,v\rangle$
+        \item run M on f(x), accept if M accepts, reject if M' rejects
+    \end{enumerate}
+
+    \vspace{2em}
+
+    To show this is correct, let us assume that $\langle G,k\rangle \in CLIQUE$, then we construct $f(x)$ such that we take any one $v \in V$ and add that to the input for M' so if CLIQUE accepts the input, then B accepts $f(x)$, for the other direction, if $f(x)$ is accepted by B, that means there is a k-clique, so CLIQUE accepts. this is polynomial, as it is polynomial to create the CLIQUE.
+
+    \vspace{2em}
+
+    c) Since CLIQUE is polynomial-time reducible to $B$, $B$ is NP-Hard, similarly we know that $B$ is NP, so given these are the two conditions for NP-complete, we know that $B$ is NP-complete
+    \end{solutionbox}
+    
+    \pagebreak
+    
+    \question[20] For each boolean formula $\phi$ in conjuctive normal one (CNF) let max($\phi$) be the largest number of conjucts in $\phi$that can be made true by some truth assignment to the variables occuring in $\phi$. Consider the language 
+    \[\text{M-SAT} = \{\langle \phi, k\rangle \mid \phi \text{ is a boolean formula in CNF and k = max($\phi$)}\}\]
+    \begin{solutionbox}{\stretch{-1}} \\
+
+    
+        
     \end{solutionbox}
 \end{questions}
 
