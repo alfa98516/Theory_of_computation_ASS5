@@ -232,7 +232,7 @@
         
     \end{solutionbox}
 \end{questions}
-
+\pagebreak
 \section*{Problem 3: Space Complexity (30 points)} 
 \begin{questions}
 	\question[30] We define the following language:
@@ -241,5 +241,35 @@
 	\]
 	Show that $EQ_{re} \in$ PSPACE.
 \end{questions}
+\begin{solutionbox}{\stretch{-1}} \\
+    We construct a non-deterministic Turing Machine $M$ for $\overline{EQ_{re}}$. \\ 
+    Let $M = $"On input $\langle e_1, e_2 \rangle$:
+    \begin{enumerate}
+	\item Use Lemma 1.55 from Sipser's book to convert $e_1$ and $e_2$ into two NFA, $N_1$ and $N_2$.
+	\item Let $S_1 = \{ \text{start state of }N_1\}$ and $S_2 = \{ \text{start state of }N_2\}$. Let $C = 0$.
+	\item If exactly one of $S_1,S_2$ contains an accept state, accept.
+	\item If $C \geq n - 1$, where $n$ is the number of states in the NFA with the most amount of states.
+	\item non-deterministically guess a symbol $a$ from their alphabet $\Sigma$.
+	\item Replace $S_1$ with the set of states reachable from $S_1$ on $a$, and do the same for $S_2$"
+    \end{enumerate}
+    Now we construct a Turing machine $M'$ for $EQ_{re}$. \\
+    Let $M' = $"On input $\langle e_1, e_2 \rangle$:
+    \begin{enumerate}
+    	\item Run $M$ on input $\langle e_1, e_2 \rangle$.
+	\item If $M$ accepts, reject.
+	\item If $M$ rejects, accept.
+    \end{enumerate}
+    
+    \noindent\textbf{\large Correctness:} \\
+    Since $M$ only accepts when exactly one of the NFAs reaches an accepting state for some $w$, we can conclude that $w$ is only in one of the two NFAs, making them different. 
+    And since $M'$ only accepts when $M$ rejects, $M$ accepts only when $e_1$ and $e_2$ are equal.
+    
+    \vspace{1em}
 
+    \noindent\textbf{\large Space complexity analysis:} \\
+    Each $S_i$ is a set of states, we only store the states we are currently in, which can be at most $n$ at a time, so $O(n).$ \\
+    The counter can only reach a maximum of $n-1$, so we only need $\lfloor \log_2(n) \rfloor + 1$ to represent it. So $O(\log_2(n))$ \\ 
+    The RegExp to NFA construction is also $o(n)$ space complexity. \\ 
+    So the full space complexity is $O(n) + O(\log_2(n)) + O(n) = O(n)$
+\end{solutionbox}
 \end{document}
