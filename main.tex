@@ -210,14 +210,36 @@
     \[
     \text{M-SAT} = \{\langle \phi, k\rangle \mid \phi \text{ is a boolean formula in CNF and k = max($\phi$)}\}
 	\]
-    \begin{solutionbox}{\stretch{-1}} \\
+   \begin{solutionbox}{\stretch{-1}} \\
+    
+    let us polynomialy-time reduce SAT to M-SAT, showing that 
+    \[\phi\in\text{SAT}\iff f(\phi)\in\text{M-SAT}\]
+    Let m be the total number of conjuncts in $\phi$, Let us construct a Turing machine that reduces SAT to M-SAT, and decides SAT based if and only if a $f(\phi)$ which we construct in M, decides M-SAT, to achieve this, let $\text{M}_{SAT}$ be a TM that decides M-SAT 
 
+    \vspace{2em}
+
+    Let M = "On input $\langle \phi \rangle$:
+    \begin{enumerate}
+        \item let $k = m$
+        \item construct $f(\phi)=\langle\phi,k\rangle$
+        \item Run $\text{M}_{SAT}$ on input $f(\phi)$, if $\text{M}_{SAT}$ accepts, accept, if $\text{M}_{SAT}$ rejects, reject
+    \end{enumerate}
+
+    \vspace{2em}
+
+    Since M-SAT accepts only if $k= \text{max($\phi$)}$, we construct $f(x)$ such that k becomes the max number of conjuncts in $\phi$ so suppose $\phi\in$ SAT, that means there is a satisfying assignments, so the number of conjuncts that can be made true is equal to the maximum amount of conjunct, thus $f(x)$ is in M-SAT, the same applies backwards, since $f(x)$ is in M-SAT, we then know that k is the same as the max amount of conjuncts, so every conjunct can be made true, so $\phi$ is in SAT, for time the main time it takes is to find the maximum amount of conjuncts in $\phi$ so if $|\phi|=n$, to iterate and find the maximum count of conjuncts takes n time, thus this is polynomial.
     
         
     \end{solutionbox}
 \end{questions}
 
 \section*{Problem 3: Space Complexity (30 points)} 
-\begin 
+\begin{questions}
+	\question[30] We define the following language:
+	\[
+		EQ_{re} = \{\langle e_1, e_2\rangle | e_1,e_2\text{ are regular expressions and } L(e_1) = L(e_2) \}
+	\]
+	Show that $EQ_{re} \in$ PSPACE.
+\end{questions}
 
 \end{document}
