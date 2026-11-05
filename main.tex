@@ -81,7 +81,7 @@
 \section*{Problem 1: the complexity class NP (30 points)}
 \begin{questions}
 	\question[15] Assume $A \in$ NP and $B \in$ P. Show that $A \setminus B \in$ NP
-	\begin{solutionbox}{\stretch{-1}} 
+	\begin{solutionbox}{\stretch{-1}} \\
 	Let $M_A$ be a nondeterministic Turing machine that decides A in polynomial time,
 	Let $M_B$ be a deterministic Turing machine that decides B in polynomial time,
 	we construct a nondeterministic Turing machine M that decides $A \setminus B$ in polynomial time:
@@ -115,14 +115,35 @@
 \pagebreak
 \section*{Problem 2: Polynomial time reductions and NP-completeness}
 \begin{questions}
-    \question[20] Consider the language \[B=\{\langle G,k,v \rangle \mid G \text{ is a graph with a $k$-clique containing $v$}\}\] (a) Show that $B$ is in NP. \newline (b) Give a polynomial-time reduction from CLIQUE to $B$. \newline (c) is $B$ NP-complete?
-    \begin{solutionbox}{\stretch{-1}} Recall that for a graph, we denote it with $G=(V,E)$,, where V is the set of vertices, let $M_C$ be a nondeterministic Turing machine that decides CLIQUE that runs in polynomial time, we construct a nondeterministic Turing machine $M$ that decides B, \newline\newline
-    Run M on $\langle G,k,v \rangle$: \newline
-    1. For each $w\in V$, we check if $w=v$
-    2. If there exists a w, such that $w=v$, we run $M_C$ on $\langle G, k\rangle$ and goto step 3, if no such w exists, we reject.
-    3. if $M_C$ accepts, accepts, otherwise reject
+    \question[20] Consider the language \[B=\{\langle G,k,v \rangle \mid G \text{ is a graph with a $k$-clique containing $v$}\}\] 
+    
+    \begin{parts}
+	\part Show that $B$ is in NP. 
+	\part Give a polynomial-time reduction from CLIQUE to $B$. 
+	\part Is $B$ NP-complete?
+\end{parts}
+    \begin{solutionbox}{\stretch{-1}} \\ 
 
-    Correctness: Based on the definition of B, it is almost the same as CLIQUE except the added condition of containing v, so, we start by checking if $v \in V$ and if so, we can just run the decider for CLIQUE, if it doesn't exist, then $G$ does not contain v and we reject. CLIQUE is in NP, so there exists a nondeterministic Turing machine that decides CLIQUE in polynomial time, and as we have one for loop that goes through V, its also polynomial, so this machine runs in polynomial time and as such $B \in NP$
+	    Recall that for a graph, we denote it with $G=(V,E)$,
+	    where V is the set of vertices, let $M_C$ be a nondeterministic Turing machine that decides CLIQUE that runs in polynomial time, 
+	    we construct a nondeterministic Turing machine $M$ that decides B. 
+
+    
+	Let $M="$On input $\langle G,k,v \rangle$: 
+	\begin{enumerate}
+		\item For each $w\in V$, we check if $w=v$
+		\item If there exists a w, such that $w=v$, we run $M_C$ on $\langle G, k\rangle$ and goto step 3, if no such w exists, we reject.
+		\item If $M_C$ accepts, accepts, otherwise reject"
+	\end{enumerate}
+
+	\vspace{2em}
+
+	\textbf{\large Correctness:}\\ 
+	Based on the definition of $B$, it is almost the same as CLIQUE except the added condition of containing $v$, 
+	so, we start by checking if $v \in V$ and if so, we can just run the decider for CLIQUE, if it doesn't exist, 
+	then $G$ does not contain $v$ and we reject.
+	CLIQUE is in NP, so there exists a nondeterministic Turing machine that decides CLIQUE in polynomial time, 
+	and as we have one for loop that goes through $V$, its also polynomial, so this machine runs in polynomial time and as such $B \in$ NP
     \end{solutionbox}
 \end{questions}
 \end{document}
